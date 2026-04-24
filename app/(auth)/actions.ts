@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClientOrNull, hasSupabaseEnv } from "@/lib/supabase/server";
+import { isDemoMode } from "@/lib/env";
 
 function encodeError(err: string, path: string) {
   const url = new URL(path, "http://app");
@@ -13,8 +14,8 @@ const DEMO_MSG =
   "Demo mode: chưa cấu hình Supabase (.env.local). Anh có thể duyệt mọi trang bằng data mẫu.";
 
 export async function login(formData: FormData): Promise<void> {
-  if (!hasSupabaseEnv()) {
-    redirect(encodeError(DEMO_MSG, "/login"));
+  if (!hasSupabaseEnv() || isDemoMode()) {
+    redirect("/dashboard");
   }
 
   const email = String(formData.get("email") ?? "");
@@ -32,8 +33,8 @@ export async function login(formData: FormData): Promise<void> {
 }
 
 export async function signup(formData: FormData): Promise<void> {
-  if (!hasSupabaseEnv()) {
-    redirect(encodeError(DEMO_MSG, "/signup"));
+  if (!hasSupabaseEnv() || isDemoMode()) {
+    redirect("/dashboard");
   }
 
   const email = String(formData.get("email") ?? "");
@@ -63,7 +64,7 @@ export async function logout(): Promise<void> {
 }
 
 export async function sendReset(formData: FormData): Promise<void> {
-  if (!hasSupabaseEnv()) {
+  if (!hasSupabaseEnv() || isDemoMode()) {
     redirect(encodeError(DEMO_MSG, "/reset-password"));
   }
 

@@ -149,9 +149,8 @@ Mở http://localhost:3000 — redirect sang `/login`. Nếu chưa cấu hình S
 
 1. Push repo lên GitHub.
 2. Trên https://vercel.com → **Add New → Project** → chọn repo.
-3. Vercel tự nhận `vercel.json` + framework Next.js.
-4. Env vars live: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_APP_URL`.
-5. Nếu chỉ muốn deploy bản demo trên Vercel, thêm `DEMO_MODE=true`.
+3. Vercel tự nhận `vercel.json` + framework Next.js. Repo này mặc định deploy ở **demo mode** trên Vercel.
+4. Nếu muốn nối live data, thêm env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_APP_URL`.
 5. Deploy — healthcheck tại `/api/health`.
 
 ### Option B — Railway (Docker)

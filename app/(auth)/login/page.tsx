@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { tServer } from "@/lib/i18n/server";
+import { isDemoMode } from "@/lib/env";
 
 export default async function LoginPage({
   searchParams,
@@ -12,6 +13,7 @@ export default async function LoginPage({
 }) {
   const { next, registered, error } = await searchParams;
   const { t } = await tServer();
+  const demoMode = isDemoMode();
 
   return (
     <div className="space-y-6">
@@ -28,6 +30,15 @@ export default async function LoginPage({
       {error && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           {error}
+        </div>
+      )}
+      {demoMode && (
+        <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm text-indigo-700">
+          Demo mode đang bật. Không cần đăng nhập, anh có thể vào thẳng{" "}
+          <Link href="/dashboard" className="font-medium underline">
+            dashboard
+          </Link>
+          .
         </div>
       )}
 

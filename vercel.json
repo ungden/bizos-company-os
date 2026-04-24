@@ -5,6 +5,7 @@
   "installCommand": "pnpm install",
   "regions": ["sin1"],
   "env": {
-    "NEXT_TELEMETRY_DISABLED": "1"
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "DEMO_MODE": "true"
   }
 }

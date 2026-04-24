@@ -18,7 +18,7 @@ export function hasSupabaseEnv() {
 }
 
 export function isDemoMode() {
-  return appEnv.demoMode;
+  return appEnv.demoMode || !hasSupabaseEnv();
 }
 
 export function isBuildTime() {
@@ -32,6 +32,7 @@ export function shouldUseDemoData() {
 export function getHealthSnapshot() {
   return {
     demoMode: isDemoMode(),
+    explicitDemoMode: appEnv.demoMode,
     hasSupabaseEnv: hasSupabaseEnv(),
     hasServiceRole: Boolean(appEnv.supabaseServiceRoleKey),
     nodeEnv: appEnv.nodeEnv,
